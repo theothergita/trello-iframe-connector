@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trello Iframe Connector</title>
+</head>
+<body>
+    <script>
+        // Beispiel für das Senden eines Webhooks an Make.com
+        function sendWebhook(data) {
+            fetch(https://hook.eu2.make.com/juhw5qfvgi1mec9tdjg9825tdop0kivl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => response.json())
+              .then(data => console.log('Success:', data))
+              .catch(error => console.error('Error:', error));
+        }
+
+        // Beispiel für das Empfangen von Nachrichten aus Trello
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'https://trello.com') return;
+            const data = event.data;
+            sendWebhook(data);
+        }, false);
+    </script>
+</body>
+</html>
